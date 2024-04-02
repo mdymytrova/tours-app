@@ -1,0 +1,33 @@
+<form>
+  <mat-form-field
+    class="searchbox"
+    subscriptSizing="dynamic"
+    appearance="outline">
+    <input
+      matInput
+      type="text"
+      [formControl]="searchControl"
+      [placeholder]="placeholderText" />
+
+    <button
+      matSuffix
+      mat-icon-button
+      aria-label="Search"
+      type="button"
+      [disabled]="!searchControl.value && !searchValue"
+      (click)="onSearch()">
+      <mat-icon>search</mat-icon>
+    </button>
+
+    @if (searchControl.value) {
+      <button
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="onClear()"
+        type="button">
+        <mat-icon>close</mat-icon>
+      </button>
+    }
+  </mat-form-field>
+</form>

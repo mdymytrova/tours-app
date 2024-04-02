@@ -1,5 +1,11 @@
-<section>
-  @for (tour of tours(); track tour.id) {
-    <h2>{{ tour.name }}</h2>
-  }
+<section class="tour-list">
+  <app-searchbox
+    placeholderText="Search by name or description"
+    (searchChange)="onSearch($event)" />
+
+  <section>
+    @for (tour of tours(); track tour.id) {
+      <h2>{{ tour.name }}</h2>
+    }
+  </section>
 </section>
