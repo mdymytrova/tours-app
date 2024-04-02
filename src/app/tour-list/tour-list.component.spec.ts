@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { signal } from '@angular/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { TourListComponent } from './tour-list.component';
 import { TourListMock } from '../mocks/tour-list.mock';
@@ -16,10 +17,11 @@ describe('TourListComponent', () => {
     });
 
     await TestBed.configureTestingModule({
-      imports: [TourListComponent],
+      imports: [TourListComponent, NoopAnimationsModule],
     })
       .overrideComponent(TourListComponent, {
         set: {
+          templateUrl: '',
           providers: [
             {
               provide: TourListService,
