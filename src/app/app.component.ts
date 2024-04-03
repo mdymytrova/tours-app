@@ -1,7 +1,13 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { HeaderComponent } from './header/header.component';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +17,10 @@ import { HeaderComponent } from './header/header.component';
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  private authService = inject(AuthService);
+
+  public ngOnInit(): void {
+    this.authService.setCurrentUser();
+  }
+}

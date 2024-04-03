@@ -1,0 +1,77 @@
+<section class="signup">
+  <h2 class="primary">Create your account</h2>
+
+  @if (signupForm.hasError('invalidForm')) {
+    <mat-error>{{ authError() }}</mat-error>
+  }
+
+  <form class="signup__form" [formGroup]="signupForm" (submit)="onSignup()">
+    <mat-form-field>
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input matInput formControlName="username" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required />
+      @if (signupForm.get('email')?.hasError('required')) {
+        <mat-error>Please provide an email</mat-error>
+      }
+
+      @if (signupForm.get('email')?.hasError('email')) {
+        <mat-error>Please provide a valid email</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" required />
+      @if (signupForm.get('password')?.hasError('required')) {
+        <mat-error>Please enter your password</mat-error>
+      }
+
+      @if (signupForm.get('password')?.hasError('minlength')) {
+        <mat-error>Password must have at least 8 characters</mat-error>
+      }
+
+      @if (signupForm.get('password')?.hasError('notConfirmed')) {
+        <mat-error>Passwords are not the same</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Confirm Password</mat-label>
+      <input matInput formControlName="passwordConfirm" required />
+      @if (signupForm.get('passwordConfirm')?.hasError('required')) {
+        <mat-error>Please enter your password</mat-error>
+      }
+
+      @if (signupForm.get('passwordConfirm')?.hasError('minlength')) {
+        <mat-error>Password must have at least 8 characters</mat-error>
+      }
+
+      @if (signupForm.get('passwordConfirm')?.hasError('notConfirmed')) {
+        <mat-error>Passwords are not the same</mat-error>
+      }
+    </mat-form-field>
+
+    <button
+      class="signup__submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!signupForm.valid"
+      type="submit">
+      Sign Up
+    </button>
+  </form>
+</section>

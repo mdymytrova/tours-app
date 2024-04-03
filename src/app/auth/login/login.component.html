@@ -1,0 +1,42 @@
+<section class="login">
+  <h2 class="primary">Log into your account</h2>
+
+  @if (loginForm.hasError('invalidForm')) {
+    <mat-error>{{ authError() }}</mat-error>
+  }
+
+  <form class="login__form" [formGroup]="loginForm" (submit)="onLogin()">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required />
+      @if (loginForm.get('email')?.hasError('required')) {
+        <mat-error>Please provide an email</mat-error>
+      }
+
+      @if (loginForm.get('email')?.hasError('email')) {
+        <mat-error>Please provide a valid email</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" required />
+      @if (loginForm.get('password')?.hasError('required')) {
+        <mat-error>Please enter your password</mat-error>
+      }
+
+      @if (loginForm.get('password')?.hasError('minlength')) {
+        <mat-error>Password must have at least 8 characters</mat-error>
+      }
+    </mat-form-field>
+
+    <button
+      class="login__submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!loginForm.valid"
+      type="submit">
+      Log In
+    </button>
+  </form>
+</section>

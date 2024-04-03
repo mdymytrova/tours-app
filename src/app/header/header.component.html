@@ -1,9 +1,13 @@
 <header class="header controls-container bg-primary-50">
   <div class="header__logo">
-    <a mat-button>All Tours</a>
+    <a mat-button routerLink="/">All Tours</a>
   </div>
   <div class="header__menu controls-container">
-    <a mat-button color="primary">Log In</a>
-    <a mat-flat-button color="primary">Sign Up</a>
+    @if (currentUser()) {
+      <button mat-button color="primary" (click)="onLogout()">Log Out</button>
+    } @else {
+      <a mat-button color="primary" routerLink="/login">Log In</a>
+      <a mat-flat-button color="primary" routerLink="/signup">Sign Up</a>
+    }
   </div>
 </header>

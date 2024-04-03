@@ -18,4 +18,8 @@ body {
   background-color: $bg-primary-50;
 }
 
+.primary {
+  color: $primary;
+}
+
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
